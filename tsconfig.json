@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "sourceMap": true,
+        "rootDir": "src/ts",
+        "outDir": "www/ts",
+        "jsx": "react",
+        "target": "es5"
+    }
+}

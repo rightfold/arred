@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+scss_sources = Dir['src/scss/**/*.scss']
+
+ts_sources = Dir['src/ts/**/*.ts'] + Dir['src/ts/**/*.tsx']
+ts_targets = ts_sources.map { |s| s.gsub(/^src/, 'www').gsub(/tsx?$/, 'js') }
+
+static_sources =
+    (Dir['src/vendor/**/*'] + Dir['src/img/**/*'] + ['src/index.html'])
+    .reject { |f| File.directory?(f) }
+static_targets = static_sources.map { |s| s.gsub(/^src/, 'www') }
+
+def variable(f, name, value)
+    f.write("#{name}=#{value}\n")
+end
+
+def rule(f, name, command)
+    f.write("rule #{name}\n    command = #{command}\n")
+end
+
+def build(f, targets, command, sources, dependencies = [])
+    f.write("build #{targets.join(' ')}: #{command} #{sources.join(' ')}")
+    f.write(" | #{dependencies.join(' ')}\n")
+end
+
+File.open('build.ninja', 'w') do |f|
+    variable(f, 'builddir', 'www')
+
+    variable(f, 'scss', 'scss')
+    variable(f, 'tsc', 'tsc')
+    variable(f, 'cp', 'cp')
+
+    variable(f, 'scss_options', '--precision 10')
+
+    rule(f, 'scss', '$scss $scss_options $in $out')
+    rule(f, 'tsc', '$tsc')
+    rule(f, 'cp', '$cp $in $out')
+
+    build(f, ['www/scss/main.css'], 'scss', ['src/scss/main.scss'], scss_sources)
+    build(f, ts_targets, 'tsc', [], ts_sources)
+
+    static_sources.zip(static_targets).each do |pair|
+        build(f, [pair[1]], 'cp', [pair[0]])
+    end
+end
+
+system('ninja') || exit($?.exitstatus)
