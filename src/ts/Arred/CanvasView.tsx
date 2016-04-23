@@ -7,21 +7,21 @@ namespace Arred {
 
     interface State { }
 
-    const computation =
-        new PlusComputation(
-            new PlusComputation(
-                new CompositionComputation(
-                    voidArrowComputation,
-                    zeroArrowComputation
+    const arrow =
+        new PlusArrow(
+            new PlusArrow(
+                new CompositionArrow(
+                    voidArrow,
+                    zeroArrow
                 ),
-                voidArrowComputation
+                voidArrow
             ),
-            new PlusComputation(
-                new CompositionComputation(
-                    voidArrowComputation,
-                    zeroArrowComputation
+            new PlusArrow(
+                new CompositionArrow(
+                    voidArrow,
+                    zeroArrow
                 ),
-                voidArrowComputation
+                voidArrow
             )
         );
 
@@ -36,7 +36,7 @@ namespace Arred {
 
                         transform='translate(32, 32)'
                     >
-                        {whiteBoxSVG(computation, 0, 0)}
+                        {whiteBoxSVG(arrow, 0, 0)}
                     </g>
                 </svg>
             </div>;

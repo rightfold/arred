@@ -4,14 +4,14 @@ namespace Arred {
 
     const detailSize = 32;
 
-    export interface Computation {
+    export interface Arrow {
         haskell: string;
         svg: JSX.Element;
         width: number;
         height: number;
     }
 
-    export function whiteBoxSVG(c: Computation, x: number, y: number): JSX.Element {
+    export function whiteBoxSVG(c: Arrow, x: number, y: number): JSX.Element {
         const absX = x * unitWidth;
         const absY = y * unitHeight;
         return <g transform={'translate(' + absX + ',' + absY + ')'}>
@@ -20,7 +20,7 @@ namespace Arred {
         </g>;
     }
 
-    export const voidArrowComputation: Computation = {
+    export const voidArrow: Arrow = {
         haskell: 'arr $ const ()',
         svg: <g>
             <line
@@ -47,7 +47,7 @@ namespace Arred {
         height: 1,
     };
 
-    export const zeroArrowComputation: Computation = {
+    export const zeroArrow: Arrow = {
         haskell: 'zeroArrow',
         svg: <g>
             <line
@@ -72,8 +72,8 @@ namespace Arred {
         height: 1,
     };
 
-    export class CompositionComputation implements Computation {
-        constructor(private from: Computation, private to: Computation) { }
+    export class CompositionArrow implements Arrow {
+        constructor(private from: Arrow, private to: Arrow) { }
 
         get haskell(): string {
             return '(' + this.from.haskell + ') >>> (' + this.to.haskell + ')';
@@ -95,8 +95,8 @@ namespace Arred {
         }
     }
 
-    export class PlusComputation implements Computation {
-        constructor(private left: Computation, private right: Computation) { }
+    export class PlusArrow implements Arrow {
+        constructor(private left: Arrow, private right: Arrow) { }
 
         get haskell(): string {
             return '(' + this.left.haskell + ') <+> (' + this.right.haskell + ')';
