@@ -127,6 +127,12 @@ namespace Arred {
                 <line x1={plusX - 8} y1={plusY} x2={plusX + 8} y2={plusY} />
                 <line x1={plusX} y1={plusY - 8} x2={plusX} y2={plusY + 8} />
                 <line
+                    x1={0}
+                    y1={plusY}
+                    x2={plusX - detailSize / 2}
+                    y2={plusY}
+                />
+                <line
                     x1={plusX + detailSize / 2}
                     y1={plusY}
                     x2={this.width * unitWidth}

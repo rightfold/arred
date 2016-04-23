@@ -8,20 +8,38 @@ namespace Arred {
     interface State { }
 
     const arrow =
-        new PlusArrow(
+        new CompositionArrow(
             new PlusArrow(
-                new CompositionArrow(
-                    voidArrow,
-                    zeroArrow
+                new PlusArrow(
+                    new CompositionArrow(
+                        voidArrow,
+                        zeroArrow
+                    ),
+                    voidArrow
                 ),
-                voidArrow
+                new PlusArrow(
+                    new CompositionArrow(
+                        voidArrow,
+                        zeroArrow
+                    ),
+                    voidArrow
+                )
             ),
             new PlusArrow(
-                new CompositionArrow(
-                    voidArrow,
-                    zeroArrow
+                new PlusArrow(
+                    new CompositionArrow(
+                        voidArrow,
+                        zeroArrow
+                    ),
+                    voidArrow
                 ),
-                voidArrow
+                new PlusArrow(
+                    new CompositionArrow(
+                        voidArrow,
+                        zeroArrow
+                    ),
+                    voidArrow
+                )
             )
         );
 
