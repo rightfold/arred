@@ -119,8 +119,8 @@ namespace Arred {
 
         get svg(): JSX.Element {
             return <g>
-                {whiteBoxSVG(this.from, 0, 0)}
-                {whiteBoxSVG(this.to, this.from.width, 0)}
+                {whiteBoxSVG(this.from, 0, this.height / 2 - this.from.height / 2)}
+                {whiteBoxSVG(this.to, this.from.width, this.height / 2 - this.to.height / 2)}
             </g>;
         }
 

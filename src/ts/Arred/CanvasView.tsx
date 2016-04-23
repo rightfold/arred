@@ -9,38 +9,41 @@ namespace Arred {
 
     const arrow =
         new CompositionArrow(
-            new PlusArrow(
+            new CompositionArrow(
                 new PlusArrow(
-                    new CompositionArrow(
-                        voidArrow,
-                        zeroArrow
+                    new PlusArrow(
+                        new CompositionArrow(
+                            voidArrow,
+                            zeroArrow
+                        ),
+                        voidArrow
                     ),
-                    voidArrow
+                    new PlusArrow(
+                        new CompositionArrow(
+                            new CustomArrow('arr $ map cube'),
+                            zeroArrow
+                        ),
+                        voidArrow
+                    )
                 ),
                 new PlusArrow(
-                    new CompositionArrow(
-                        new CustomArrow('arr $ map cube'),
-                        zeroArrow
+                    new PlusArrow(
+                        new CompositionArrow(
+                            new CustomArrow('arr $ map square'),
+                            zeroArrow
+                        ),
+                        voidArrow
                     ),
-                    voidArrow
+                    new PlusArrow(
+                        new CompositionArrow(
+                            voidArrow,
+                            zeroArrow
+                        ),
+                        voidArrow
+                    )
                 )
             ),
-            new PlusArrow(
-                new PlusArrow(
-                    new CompositionArrow(
-                        new CustomArrow('arr $ map square'),
-                        zeroArrow
-                    ),
-                    voidArrow
-                ),
-                new PlusArrow(
-                    new CompositionArrow(
-                        voidArrow,
-                        zeroArrow
-                    ),
-                    voidArrow
-                )
-            )
+            new CustomArrow('Kleisli putStrLn')
         );
 
     export class CanvasView extends React.Component<Props, State> {
