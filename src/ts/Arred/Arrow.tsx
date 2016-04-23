@@ -94,6 +94,7 @@ namespace Arred {
                     y={20}
                     fill='black'
                     strokeWidth={0}
+                    fontFamily='Consolas'
                 >
                     {this.haskell}
                 </text>
