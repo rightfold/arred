@@ -103,6 +103,8 @@ namespace Arred {
         }
 
         get svg(): JSX.Element {
+            const plusX = this.width * unitWidth - unitWidth / 2;
+            const plusY = this.left.height * unitHeight + unitHeight / 2;
             return <g>
                 {whiteBoxSVG(
                     this.left,
@@ -112,37 +114,23 @@ namespace Arred {
                 <line
                     x1={(this.width - 1) * unitWidth}
                     y1={this.left.height * unitHeight / 2}
-                    x2={this.width * unitWidth - unitWidth / 2}
-                    y2={this.left.height * unitHeight + unitHeight / 2}
+                    x2={plusX}
+                    y2={plusY}
                 />
                 <line
                     x1={(this.width - 1) * unitWidth}
                     y1={(this.left.height + 1) * unitHeight + this.right.height * unitHeight / 2}
-                    x2={this.width * unitWidth - unitWidth / 2}
-                    y2={this.left.height * unitHeight + unitHeight / 2}
+                    x2={plusX}
+                    y2={plusY}
                 />
-                <circle
-                    cx={this.width * unitWidth - unitWidth / 2}
-                    cy={this.left.height * unitHeight + unitHeight / 2}
-                    r={detailSize / 2}
-                />
+                <circle cx={plusX} cy={plusY} r={detailSize / 2} />
+                <line x1={plusX - 8} y1={plusY} x2={plusX + 8} y2={plusY} />
+                <line x1={plusX} y1={plusY - 8} x2={plusX} y2={plusY + 8} />
                 <line
-                    x1={this.width * unitWidth - unitWidth / 2 - 8}
-                    y1={this.left.height * unitHeight + unitHeight / 2}
-                    x2={this.width * unitWidth - unitWidth / 2 + 8}
-                    y2={this.left.height * unitHeight + unitHeight / 2}
-                />
-                <line
-                    x1={this.width * unitWidth - unitWidth / 2}
-                    y1={this.left.height * unitHeight + unitHeight / 2 - 8}
-                    x2={this.width * unitWidth - unitWidth / 2}
-                    y2={this.left.height * unitHeight + unitHeight / 2 + 8}
-                />
-                <line
-                    x1={this.width * unitWidth - unitWidth / 2 + detailSize / 2}
-                    y1={this.left.height * unitHeight + unitHeight / 2}
+                    x1={plusX + detailSize / 2}
+                    y1={plusY}
                     x2={this.width * unitWidth}
-                    y2={this.left.height * unitHeight + unitHeight / 2}
+                    y2={plusY}
                 />
                 {whiteBoxSVG(
                     this.right,
