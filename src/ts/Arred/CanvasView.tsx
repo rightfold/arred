@@ -9,7 +9,13 @@ namespace Arred {
 
     const computation =
         new PlusComputation(
-            zeroArrowComputation,
+            new PlusComputation(
+                new CompositionComputation(
+                    voidArrowComputation,
+                    zeroArrowComputation
+                ),
+                voidArrowComputation
+            ),
             new PlusComputation(
                 new CompositionComputation(
                     voidArrowComputation,
@@ -24,7 +30,7 @@ namespace Arred {
             return <div className='arred-canvas'>
                 <svg xmlns='http://www.w3.org/2000/svg'>
                     <g
-                        fill='transparent'
+                        fill='white'
                         stroke='black'
                         strokeWidth={2}
 

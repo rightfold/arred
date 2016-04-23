@@ -112,19 +112,13 @@ namespace Arred {
                 <line
                     x1={(this.width - 1) * unitWidth}
                     y1={this.left.height * unitHeight / 2}
-                    x2={this.width * unitWidth - unitWidth / 2 - detailSize / 2 - detailSize / 2}
+                    x2={this.width * unitWidth - unitWidth / 2}
                     y2={this.left.height * unitHeight + unitHeight / 2}
                 />
                 <line
                     x1={(this.width - 1) * unitWidth}
                     y1={(this.left.height + 1) * unitHeight + this.right.height * unitHeight / 2}
-                    x2={this.width * unitWidth - unitWidth / 2 - detailSize / 2 - detailSize / 2}
-                    y2={this.left.height * unitHeight + unitHeight / 2}
-                />
-                <line
-                    x1={this.width * unitWidth - unitWidth / 2 - detailSize / 2 - detailSize / 2}
-                    y1={this.left.height * unitHeight + unitHeight / 2}
-                    x2={this.width * unitWidth - unitWidth / 2 - detailSize / 2}
+                    x2={this.width * unitWidth - unitWidth / 2}
                     y2={this.left.height * unitHeight + unitHeight / 2}
                 />
                 <circle
