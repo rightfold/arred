@@ -140,18 +140,22 @@ namespace Arred {
         }
     }
 
-    export class PlusArrow implements Arrow {
+    abstract class CombinatorArrow implements Arrow {
         constructor(private left: Arrow, private right: Arrow) { }
 
+        protected combinator: string;
+
         get haskell(): string {
-            return '(' + this.left.haskell + ') <+> (' + this.right.haskell + ')';
+            return '(' + this.left.haskell + ') '
+                 + this.combinator
+                 + ' (' + this.right.haskell + ')';
         }
 
         get svg(): JSX.Element {
             const leftX = this.width - 1 - this.left.width;
             const rightX = this.width - 1 - this.right.width;
-            const plusX = this.width * unitWidth - unitWidth / 2;
-            const plusY = this.left.height * unitHeight + unitHeight / 2;
+            const combX = this.width * unitWidth - unitWidth / 2;
+            const combY = this.left.height * unitHeight + unitHeight / 2;
             return <g>
                 <line
                     x1={0}
@@ -192,25 +196,35 @@ namespace Arred {
                 <line
                     x1={(this.width - 1) * unitWidth}
                     y1={this.left.height * unitHeight / 2}
-                    x2={plusX}
-                    y2={plusY}
+                    x2={combX}
+                    y2={combY}
                 />
                 <line
                     x1={(this.width - 1) * unitWidth}
                     y1={(this.left.height + 1) * unitHeight + this.right.height * unitHeight / 2}
-                    x2={plusX}
-                    y2={plusY}
+                    x2={combX}
+                    y2={combY}
                 />
 
-                <circle cx={plusX} cy={plusY} r={detailSize / 2} />
-                <line x1={plusX - 8} y1={plusY} x2={plusX + 8} y2={plusY} />
-                <line x1={plusX} y1={plusY - 8} x2={plusX} y2={plusY + 8} />
+                <circle cx={combX} cy={combY} r={detailSize / 2} />
+                <text
+                    x={combX}
+                    y={combY}
+                    fill='black'
+                    strokeWidth={0}
+                    fontFamily='Consolas'
+                    textAnchor='middle'
+                    dominantBaseline='central'
+                    fontSize='12px'
+                >
+                    {this.combinator}
+                </text>
 
                 <line
-                    x1={plusX + detailSize / 2}
-                    y1={plusY}
+                    x1={combX + detailSize / 2}
+                    y1={combY}
                     x2={this.width * unitWidth}
-                    y2={plusY}
+                    y2={combY}
                 />
             </g>;
         }
@@ -221,6 +235,18 @@ namespace Arred {
 
         get height(): number {
             return this.left.height + 1 + this.right.height;
+        }
+    }
+
+    export class PlusArrow extends CombinatorArrow {
+        get combinator(): string {
+            return '<+>';
+        }
+    }
+
+    export class FanoutArrow extends CombinatorArrow {
+        get combinator(): string {
+            return '&&&';
         }
     }
 }

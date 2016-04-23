@@ -10,17 +10,11 @@ namespace Arred {
     const arrow =
         new CompositionArrow(
             new CompositionArrow(
-                new CustomArrow('arr $ \\x -> (x, x)'),
-                new CompositionArrow(
-                    new CustomArrow('first f'),
-                    new CompositionArrow(
-                        new CustomArrow('arr $ \\(y, x) -> (x, y)'),
-                        new CompositionArrow(
-                            new CustomArrow('first g'),
-                            new CustomArrow('arr $ \\(z, y) -> y + z')
-                        )
-                    )
-                )
+                new FanoutArrow(
+                    new CustomArrow('f'),
+                    new CustomArrow('g')
+                ),
+                new CustomArrow('arr (uncurry (+))')
             ),
             new PlusArrow(zeroArrow, voidArrow)
         );
