@@ -19,7 +19,7 @@ namespace Arred {
                 ),
                 new PlusArrow(
                     new CompositionArrow(
-                        voidArrow,
+                        new CustomArrow('arr $ map cube'),
                         zeroArrow
                     ),
                     voidArrow
@@ -28,7 +28,7 @@ namespace Arred {
             new PlusArrow(
                 new PlusArrow(
                     new CompositionArrow(
-                        voidArrow,
+                        new CustomArrow('arr $ map square'),
                         zeroArrow
                     ),
                     voidArrow

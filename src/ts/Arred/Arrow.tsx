@@ -72,6 +72,43 @@ namespace Arred {
         height: 1,
     };
 
+    export class CustomArrow implements Arrow {
+        constructor(public haskell: string) { }
+
+        get svg(): JSX.Element {
+            return <g>
+                <line
+                    x1={0}
+                    y1={unitHeight / 2}
+                    x2={unitWidth * 2}
+                    y2={unitHeight / 2}
+                />
+                <rect
+                    x={unitWidth / 4}
+                    y={0}
+                    width={unitWidth * 1.5}
+                    height={unitHeight}
+                />
+                <text
+                    x={unitWidth / 4 + 8}
+                    y={20}
+                    fill='black'
+                    strokeWidth={0}
+                >
+                    {this.haskell}
+                </text>
+            </g>;
+        }
+
+        get width(): number {
+            return 2;
+        }
+
+        get height(): number {
+            return 1;
+        }
+    }
+
     export class CompositionArrow implements Arrow {
         constructor(private from: Arrow, private to: Arrow) { }
 
