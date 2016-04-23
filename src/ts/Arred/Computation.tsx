@@ -2,6 +2,8 @@ namespace Arred {
     const unitWidth = 128;
     const unitHeight = 64;
 
+    const detailSize = 32;
+
     export interface Computation {
         haskell: string;
         svg: JSX.Element;
@@ -24,20 +26,20 @@ namespace Arred {
             <line
                 x1={0}
                 y1={unitHeight / 2}
-                x2={unitWidth / 2 - 16}
+                x2={unitWidth / 2 - detailSize / 2}
                 y2={unitHeight / 2}
             />
             <line
-                x1={unitWidth / 2 + 16}
+                x1={unitWidth / 2 + detailSize / 2}
                 y1={unitHeight / 2}
                 x2={unitWidth}
                 y2={unitHeight / 2}
             />
             <rect
-                x={unitWidth / 2 - 16}
-                y={unitHeight / 2 - 16}
-                width={32}
-                height={32}
+                x={unitWidth / 2 - detailSize / 2}
+                y={unitHeight / 2 - detailSize / 2}
+                width={detailSize}
+                height={detailSize}
                 fill='black'
             />
         </g>,
@@ -51,11 +53,11 @@ namespace Arred {
             <line
                 x1={0}
                 y1={unitHeight / 2}
-                x2={unitWidth / 2 - 16}
+                x2={unitWidth / 2 - detailSize / 2}
                 y2={unitHeight / 2}
             />
             <line
-                x1={unitWidth / 2 + 16}
+                x1={unitWidth / 2 + detailSize / 2}
                 y1={unitHeight / 2}
                 x2={unitWidth}
                 y2={unitHeight / 2}
@@ -63,7 +65,7 @@ namespace Arred {
             <circle
                 cx={unitWidth / 2}
                 cy={unitHeight / 2}
-                r={16}
+                r={detailSize / 2}
             />
         </g>,
         width: 1,
@@ -110,25 +112,25 @@ namespace Arred {
                 <line
                     x1={(this.width - 1) * unitWidth}
                     y1={this.left.height * unitHeight / 2}
-                    x2={this.width * unitWidth - unitWidth / 2 - 16 - 16}
+                    x2={this.width * unitWidth - unitWidth / 2 - detailSize / 2 - detailSize / 2}
                     y2={this.left.height * unitHeight + unitHeight / 2}
                 />
                 <line
                     x1={(this.width - 1) * unitWidth}
                     y1={(this.left.height + 1) * unitHeight + this.right.height * unitHeight / 2}
-                    x2={this.width * unitWidth - unitWidth / 2 - 16 - 16}
+                    x2={this.width * unitWidth - unitWidth / 2 - detailSize / 2 - detailSize / 2}
                     y2={this.left.height * unitHeight + unitHeight / 2}
                 />
                 <line
-                    x1={this.width * unitWidth - unitWidth / 2 - 16 - 16}
+                    x1={this.width * unitWidth - unitWidth / 2 - detailSize / 2 - detailSize / 2}
                     y1={this.left.height * unitHeight + unitHeight / 2}
-                    x2={this.width * unitWidth - unitWidth / 2 - 16}
+                    x2={this.width * unitWidth - unitWidth / 2 - detailSize / 2}
                     y2={this.left.height * unitHeight + unitHeight / 2}
                 />
                 <circle
                     cx={this.width * unitWidth - unitWidth / 2}
                     cy={this.left.height * unitHeight + unitHeight / 2}
-                    r={16}
+                    r={detailSize / 2}
                 />
                 <line
                     x1={this.width * unitWidth - unitWidth / 2 - 8}
@@ -143,7 +145,7 @@ namespace Arred {
                     y2={this.left.height * unitHeight + unitHeight / 2 + 8}
                 />
                 <line
-                    x1={this.width * unitWidth - unitWidth / 2 + 16}
+                    x1={this.width * unitWidth - unitWidth / 2 + detailSize / 2}
                     y1={this.left.height * unitHeight + unitHeight / 2}
                     x2={this.width * unitWidth}
                     y2={this.left.height * unitHeight + unitHeight / 2}
