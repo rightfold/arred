@@ -27,20 +27,8 @@ namespace Arred {
                     )
                 ),
                 new PlusArrow(
-                    new PlusArrow(
-                        new CompositionArrow(
-                            new CustomArrow('arr $ map square'),
-                            zeroArrow
-                        ),
-                        voidArrow
-                    ),
-                    new PlusArrow(
-                        new CompositionArrow(
-                            voidArrow,
-                            zeroArrow
-                        ),
-                        voidArrow
-                    )
+                    voidArrow,
+                    zeroArrow
                 )
             ),
             new CustomArrow('Kleisli putStrLn')
