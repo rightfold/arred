@@ -16,6 +16,13 @@ namespace Arred {
         const absY = y * unitHeight;
         return <g transform={'translate(' + absX + ',' + absY + ')'}>
             <title>{c.haskell}</title>
+            <rect
+                x={0}
+                y={0}
+                width={c.width * unitWidth}
+                height={c.height * unitHeight}
+                stroke='transparent'
+            />
             {c.svg}
         </g>;
     }
@@ -141,6 +148,8 @@ namespace Arred {
         }
 
         get svg(): JSX.Element {
+            const leftX = this.width - 1 - this.left.width;
+            const rightX = this.width - 1 - this.right.width;
             const plusX = this.width * unitWidth - unitWidth / 2;
             const plusY = this.left.height * unitHeight + unitHeight / 2;
             return <g>
@@ -160,7 +169,7 @@ namespace Arred {
                 <line
                     x1={unitWidth}
                     y1={this.left.height * unitHeight / 2}
-                    x2={(this.width - 1 - this.left.width) * unitWidth}
+                    x2={leftX * unitWidth}
                     y2={this.left.height * unitHeight / 2}
                 />
 
@@ -173,20 +182,12 @@ namespace Arred {
                 <line
                     x1={unitWidth}
                     y1={(this.left.height + 1 + this.right.height / 2) * unitHeight}
-                    x2={(this.width - 1 - this.right.width) * unitWidth}
+                    x2={rightX * unitWidth}
                     y2={(this.left.height + 1 + this.right.height / 2) * unitHeight}
                 />
 
-                {whiteBoxSVG(
-                    this.left,
-                    this.width - 1 - this.left.width,
-                    0
-                )}
-                {whiteBoxSVG(
-                    this.right,
-                    this.width - 1 - this.right.width,
-                    this.left.height + 1
-                )}
+                {whiteBoxSVG(this.left, leftX, 0)}
+                {whiteBoxSVG(this.right, rightX, this.left.height + 1)}
 
                 <line
                     x1={(this.width - 1) * unitWidth}

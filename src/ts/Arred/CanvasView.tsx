@@ -10,28 +10,19 @@ namespace Arred {
     const arrow =
         new CompositionArrow(
             new CompositionArrow(
-                new PlusArrow(
-                    new PlusArrow(
+                new CustomArrow('arr $ \\x -> (x, x)'),
+                new CompositionArrow(
+                    new CustomArrow('first f'),
+                    new CompositionArrow(
+                        new CustomArrow('arr $ \\(y, x) -> (x, y)'),
                         new CompositionArrow(
-                            voidArrow,
-                            zeroArrow
-                        ),
-                        voidArrow
-                    ),
-                    new PlusArrow(
-                        new CompositionArrow(
-                            new CustomArrow('arr $ map cube'),
-                            zeroArrow
-                        ),
-                        voidArrow
+                            new CustomArrow('first g'),
+                            new CustomArrow('arr $ \\(z, y) -> y + z')
+                        )
                     )
-                ),
-                new PlusArrow(
-                    voidArrow,
-                    zeroArrow
                 )
             ),
-            new CustomArrow('Kleisli putStrLn')
+            new PlusArrow(zeroArrow, voidArrow)
         );
 
     export class CanvasView extends React.Component<Props, State> {
