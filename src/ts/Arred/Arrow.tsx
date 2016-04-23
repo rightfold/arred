@@ -244,6 +244,12 @@ namespace Arred {
         }
     }
 
+    export class SplitArrow extends CombinatorArrow {
+        get combinator(): string {
+            return '***';
+        }
+    }
+
     export class FanoutArrow extends CombinatorArrow {
         get combinator(): string {
             return '&&&';
